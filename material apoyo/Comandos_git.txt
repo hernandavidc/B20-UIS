@@ -1,0 +1,4 @@
+git status 
+git add . | '../ruta/archivo'
+git commit -m "Texto descriptivo del commit"
+git push [Repo remoto] [Rama] --> git push origin main
