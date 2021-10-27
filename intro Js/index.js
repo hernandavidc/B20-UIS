@@ -108,20 +108,62 @@ const users = [
     }
 ];
 
-const getUsrById = ( id ) => {
-    
-    return new Promise(( resolve, reject ) => {
+const wishlists = [
+    {
+        usrId: 1,
+        wishlist: [ 1, 15, 98 ]
+    }
+];
 
-        const usr = users.find( user => user.id == id )?.name;
+const getUsrById = ( userId ) => {    
+    return new Promise((resolve, reject) => {
+        const usr = users.find( user => user.id == userId );
 
-        (usr) ? resolve( usr ) : reject( `User not found: ${ id }` );
+        (usr) ? resolve( usr ) : reject( `User not found: ${ userId }` );
+    });
+}
+
+const getWishlistById = ( userId ) => {    
+    return new Promise((resolve, reject) => {
+        const wishlist = wishlists.find( wishlist => wishlist.usrId == userId );
+
+        (wishlist) ? resolve( wishlist ) : reject( `Wishlist not found: ${ userId }` );
     });
 }
 
 const id = 1;
 
-getUsrById(id)
-    .then( profile => {
-        console.log(profile);
-    })
-    .catch( err => console.log( err ) );
+const getFullProfile = async (usrId) =>{
+    try{
+        const profile = await getUsrById(usrId);
+        const wishlistDB = await getWishlistById(usrId);
+        profile.wishlist = wishlistDB.wishlist;
+    
+        return profile;
+    }
+    catch(err){
+        throw `getFullProfile error: ${ err }`;
+    }
+}
+
+getFullProfile(id).then((res) => {
+    console.log("Then: ", res);
+}).catch(err => {
+    console.log("Catch: ", err);
+});
+
+// let profile = {};
+
+// getUsrById(id).then(response => {
+//         profile = response;
+//         return getWishlistById(id)
+//     })
+//     .then(res => {
+//         profile.wishlist = res.wishlist;
+//     })
+//     .then(()=>{
+//         console.log(profile);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
