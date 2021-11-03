@@ -3,6 +3,8 @@ https://www.scrumstudy.com/
 
 https://nodejs.org/es/download/
 
+https://keycode.info/
+
 #Documentaciones
 https://developer.mozilla.org/es/
 https://www.w3schools.com/
@@ -12,3 +14,9 @@ https://en.bem.info/methodology/quick-start/
 
 #Instalar GIT en el Path
 https://www.answerlookup.com/how-add-git-windows-path-environment-variable
+
+# Links instalación MongoDb
+https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+https://docs.mongodb.com/manual/administration/install-on-linux/
+https://expressjs.com/es/starter/installing.html
