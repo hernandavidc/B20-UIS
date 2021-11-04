@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro VueJs</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="./components/message.js"></script>
+    <script src="./components/computed.js"></script>
+    <script src="./components/methods.js"></script>
+    <script src="./components/vmodel.js"></script>
+    <script src="./components/propsandemmit.js"></script>
+    <script src="./components/parent-data.js"></script>
+    <script src="./components/child.js"></script>
+</head>
+<body>
+    <div id="app">
+        <message></message>
+        <computed></computed>
+        <methods></methods>
+        <vmodel></vmodel>
+        <propsandemmit 
+            :options="optionsToSelect"
+            @save-option="callToServe" 
+        ></propsandemmit>
+        <parent-data></parent-data>
+        <child ref="childComp"></child>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data(){
+                return {
+                    dataParent: "Esto es un String del padre",
+                    optionsToSelect: [
+                        {
+                            id: 1,
+                            str: "Option 1"
+                        },{
+                            id: 2,
+                            str: "Option 2"
+                        },{
+                            id: 3,
+                            str: "Option 3"
+                        }
+                    ]
+                }
+            },
+            methods: {
+                callToServe(idOption){
+                    console.log("Guardar en DB: ", idOption);
+                }
+            },
+            mounted(){
+                console.log("Componentes hijo montados y accesibles");
+                console.log(this.$refs.childComp.childData);
+
+                setTimeout(()=>{
+                    this.$refs.childComp.showName();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
