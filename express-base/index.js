@@ -1,23 +1,5 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const Server = require('./models/server')
 
-const { usersGet, userPost, userPut, userDel } = require('./controllers/users');
+const server = new Server();
 
-app.use(express.json());
-
-app.get('/users', usersGet);
-
-app.post('/users', userPost);
-
-app.get('/user/:cc', (req, res) => {
-  res.send('Hello get cc!')
-});
-
-app.put('/user/:cc', userPut);
-
-app.delete('/user/:cc', userDel);
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+server.listen();
