@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const { response, request } = require('express');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
@@ -7,17 +9,58 @@ const usersGet = async (req, res) => {
     const query = { status: true }
     const skip = limit * (page - 1);
 
-    const users = await User.find(query)
-                            .skip(Number(skip))
-                            .limit(limit)
+    // const users = await User.find(query)
+    //                         .skip(Number(skip))
+    //                         .limit(limit)
 
-    const totalUsers = await User.countDocuments(query);
+    // const totalUsers = await User.countDocuments(query);
+
+    const [ users, totalUsers ] = await Promise.all([
+                                    User.find(query)
+                                        .skip(Number(skip))
+                                        .limit(limit),
+                                    User.countDocuments(query)
+                                ])
 
     res.json({
         users,
         totalUsers
     })
+}
 
+const usersLogin = async (req = request, res = response) => {
+    const { email, password } = req.body;
+
+    try{
+        const user = await User.findOne({ email });
+        if(!user){
+            return res.status(400).json({ msg: "Email o contraseña erronea", field: "email" })
+        }
+
+        if(!user.status){
+            return res.status(400).json({ msg: "Cuenta inactiva comuniquese con atención al cliente" })
+        }
+
+        const validatePassword = bcrypt.compareSync(password, user.password);
+        if(!validatePassword){
+            return res.status(400).json({ msg: "Email o contraseña erronea", field: "password" })
+        }
+        
+        const token = jwt.sign(user.toJSON(), process.env.SECRECTKEY, {
+            expiresIn: "10h"
+        })
+
+        res.json({
+            user,
+            token
+        })
+
+    }
+    catch(err){
+        res.status(500).json({
+            msg: "Contactese con el administrador"
+        })
+    }
 }
 
 const userPost = async (req, res) => {
@@ -63,6 +106,7 @@ const userDel = async (req, res) => {
 
 module.exports = {
     usersGet,
+    usersLogin,
     userPost,
     userPut,
     userDel
