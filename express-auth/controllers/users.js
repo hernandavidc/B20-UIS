@@ -66,7 +66,7 @@ const usersLogin = async (req = request, res = response) => {
 const userPost = async (req, res) => {
     const { name, email, password, rol } = req.body
 
-    user = new User({ name, email, password, rol });
+    let user = new User({ name, email, password, rol });
 
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(password, salt);

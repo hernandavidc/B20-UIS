@@ -1,0 +1,20 @@
+<template>
+  <div id="app">
+    <layout>
+      <template slot="products"> <products-list></products-list> </template>
+      <template slot="cart"> <h1>Cart</h1> </template>
+    </layout>
+  </div>
+</template>
+
+<script>
+import BaseLayout from '@/layout/BaseLayout.vue'
+import ProductsList from '@/components/ProductsList.vue'
+
+export default {
+  name: 'App',
+  components: {
+    'layout': BaseLayout, ProductsList
+  }
+}
+</script>
