@@ -2,7 +2,7 @@
   <div id="app">
     <layout>
       <template slot="products"> <products-list></products-list> </template>
-      <template slot="cart"> <h1>Cart</h1> </template>
+      <template slot="cart"> <cart></cart> </template>
     </layout>
   </div>
 </template>
@@ -10,11 +10,12 @@
 <script>
 import BaseLayout from '@/layout/BaseLayout.vue'
 import ProductsList from '@/components/ProductsList.vue'
+import Cart from '@/components/Cart.vue'
 
 export default {
   name: 'App',
   components: {
-    'layout': BaseLayout, ProductsList
+    'layout': BaseLayout, ProductsList, Cart
   }
 }
 </script>
