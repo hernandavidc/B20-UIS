@@ -17,9 +17,13 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
+import { BAlert } from 'bootstrap-vue'
 
 export default {
     name: 'Cart',
+    components: {
+        BAlert
+    },
     data(){
         return {
             fields: ['title', 'qty', 'price', 'actions']
