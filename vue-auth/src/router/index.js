@@ -24,7 +24,13 @@ const routes = [
     path: '/secret',
     name: 'Secret',
     component: () => import(/* webpackChunkName: "Secret" */ '../views/Secret.vue'),
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'users',
+        component: () => import(/* webpackChunkName: "Users" */ '../views/Users.vue'),
+      }
+    ]
   }
 ]
 

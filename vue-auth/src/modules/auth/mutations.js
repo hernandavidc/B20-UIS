@@ -1,5 +1,5 @@
 export function setUser(state, playload){
-    state.userDate = playload.user;
+    state.userData = playload.user;
     state.token = playload.token;
     state.isLogged = true;
     state.error = false;
@@ -7,7 +7,7 @@ export function setUser(state, playload){
 }
 
 export function logout(state){
-    state.userDate = null;
+    state.userData = null;
     state.token = null;
     state.isLogged = false;
 }

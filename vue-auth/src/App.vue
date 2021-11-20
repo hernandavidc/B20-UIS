@@ -10,14 +10,20 @@
     </b-container>
 
 
-    <div class="position-absolute h-100 w-100 d-flex justify-content-center align-items-center"
+    <div class="loader position-absolute h-100 w-100 justify-content-center align-items-center"
       style="z-index:10000;top:0; left: 0; background: #0000004f;"
-      v-if="loading"
+      v-show="loading"
     >
       <b-spinner style="width: 5rem; height:5rem;" variant="primary" type="grow"></b-spinner>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .loader{
+    display: flex;
+  }
+</style>
 
 <script>
 import { BSpinner } from 'bootstrap-vue'
