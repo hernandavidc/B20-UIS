@@ -1,10 +1,11 @@
+Instalación de dependencias: https://devcenter.heroku.com/articles/heroku-cli
+
 //Antes de empezar revisamos que tengamos bien configurados nuestros apuntadores/configuraciones para la DB y recursos externos necesarios
 
 1. Heroku nos va a decir qué puerto va a utilizar nuestra aplicación, así que tenemos que asegurarnos 
     de que ese es el puerto en el que el server esta escuchando. En nuestra modelo de Servidor, editamos 
     el atributo donde controlamos el puerto:
-    ---> this.port = process.env.PORT || config.get('PORT');
-    // El valor por defecto que va poner/espera Heroku es de 5000, si tenemos problemas con el podemos hardcodearlo en nuestra rama de Heroku
+    ---> this.port = process.env.PORT || 5000;
 
 2. Especificar script de arranque
     Tenemos que habilitarle a Heroku la instruccion necesaria para arrancar la aplicación, en nuestro package.json:
