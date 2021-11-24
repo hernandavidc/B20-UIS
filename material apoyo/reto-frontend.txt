@@ -5,7 +5,7 @@ ejercicio se hizo mediante el paquete json-server:
 
 > npm install -g json-server
 > json-server --watch db.json
-
+                                                            '/todos/:id/update'
 Si nos vamos a la ruta de editar Todo, de nuestro frontend, '/todos/4/update' 
 nos podemos dar cuenta que si entramos directamente no vamos a tener información 
 para renderizar.
