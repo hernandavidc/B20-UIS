@@ -3,6 +3,7 @@ const { response, request } = require('express');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+const { uploadFile } = require('../helpers/upload-file');
 
 const usersGet = async (req, res) => {
     const { limit = 5, page = 1 } = req.query;
@@ -104,10 +105,20 @@ const userDel = async (req, res) => {
     res.json( user );
 }
 
+const userImgUpload = async (req, res) => {
+    // await uploadFile(req.files, ['pdf', 'txt'], 'docs')
+    await uploadFile(req.files, undefined, 'profiles').then((name) => {
+        res.json(name)
+    }).catch(( msg ) => {
+        res.status(400).json({ msg })
+    })
+}
+
 module.exports = {
     usersGet,
     usersLogin,
     userPost,
     userPut,
-    userDel
+    userDel,
+    userImgUpload
 }

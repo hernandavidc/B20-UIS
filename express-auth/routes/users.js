@@ -21,7 +21,8 @@ const {
         usersLogin,
         userPost,
         userPut,
-        userDel
+        userDel,
+        userImgUpload
     } = require('../controllers/users');
 
 router.get('/', [
@@ -60,9 +61,6 @@ router.delete('/:id', [
     validateData
 ], userDel);
 
-// router.get('/:id', (req, res) => {
-//   res.send('Hello get cc!')
-// });
-
+router.post('/upload', userImgUpload)
 
 module.exports = router;
